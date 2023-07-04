@@ -1,0 +1,21 @@
+
+<div class="container">
+  <form class="form" [formGroup]="inputForm">
+    <h2 class="form__title">Find available flights</h2>
+    <div class="form__group">
+      <div class="form__group-item">
+        <i class="fa-solid fa-plane-departure" id="icon"></i>
+        <input class="form__item-input" type="text" id="departureStation" formControlName="origin" required placeholder="Origin">
+        <div  *ngIf="inputForm.controls['origin'].hasError('required') && inputForm.controls['origin'].touched">Campo requerido*</div>
+        <div *ngIf="inputForm.controls['origin'].hasError('uppercase')">Debe ingresar solo mayúsculas</div>
+      </div>
+      <div class="form__group-item">
+        <i class="fa-solid fa-plane-arrival" id="icon"></i>
+        <input class="form__item-input" type="text" id="arrivalStation" formControlName="destination" required placeholder="Destination">
+      </div>
+    </div>
+    <button class="form__button" (click)="submitForm()">Search</button>
+  </form>
+</div>
+
+
