@@ -17,8 +17,6 @@ export class FormComponent{
 
   constructor(private api:ApiService, private formBuilder: FormBuilder, private router: Router ){
     this.inputForm = this.formBuilder.group({
-      /* origin: ['', Validators.required],
-      destination: ['', Validators.required], */
       origin: ['', Validators.required],
       destination: ['', Validators.required],
     })
@@ -28,9 +26,10 @@ export class FormComponent{
     if (this.inputForm.valid) {
       let origin = this.inputForm.value.origin;
       let destination = this.inputForm.value.destination;
+      this.inputForm.setValidators(this.validateValues.bind(this));
       this.router.navigate([`flights/origin/${origin}/destination/${destination}`]);
     } else {
-      console.log('Formulario inválido');
+      alert('Invalid form');
     }
   }
 
@@ -38,6 +37,17 @@ export class FormComponent{
     if (control.value && control.value !== control.value.toUpperCase() && control.dirty) {
       return { uppercase: true };
     }
+    return null;
+  }
+
+  validateValues() {
+    let origin = this.inputForm.value.origin;
+    let destination = this.inputForm.value.destination;
+
+    if (origin && destination && origin === destination) {
+      return { sameValue: true };
+    }
+
     return null;
   }
 }

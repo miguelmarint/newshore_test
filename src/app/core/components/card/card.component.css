@@ -45,3 +45,18 @@
 .card__body{
   color:white;
 }
+
+.card__button{
+  flex-basis: 48%;
+  font-size: 16px;
+  background-color: #04BD7D;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: background 1s;
+  margin-top: 30px;
+  color: white;
+}

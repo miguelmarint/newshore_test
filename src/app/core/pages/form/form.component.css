@@ -79,6 +79,7 @@
   outline: 0;
   cursor: pointer;
   transition: background 1s;
+  color: white;
 }
 
 .form__group{

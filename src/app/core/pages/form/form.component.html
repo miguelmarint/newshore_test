@@ -5,14 +5,17 @@
     <div class="form__group">
       <div class="form__group-item">
         <i class="fa-solid fa-plane-departure" id="icon"></i>
-        <input class="form__item-input" type="text" id="departureStation" formControlName="origin" required placeholder="Origin">
+        <input class="form__item-input" type="text" id="departureStation" formControlName="origin" required placeholder="From">
         <div  *ngIf="inputForm.controls['origin'].hasError('required') && inputForm.controls['origin'].touched">Campo requerido*</div>
         <div *ngIf="inputForm.controls['origin'].hasError('uppercase')">Debe ingresar solo mayúsculas</div>
       </div>
       <div class="form__group-item">
         <i class="fa-solid fa-plane-arrival" id="icon"></i>
-        <input class="form__item-input" type="text" id="arrivalStation" formControlName="destination" required placeholder="Destination">
+        <input class="form__item-input" type="text" id="arrivalStation" formControlName="destination" required placeholder="To">
+        <div  *ngIf="inputForm.controls['destination'].hasError('required') && inputForm.controls['destination'].touched">Campo requerido*</div>
+        <div *ngIf="inputForm.controls['destination'].hasError('uppercase')">Debe ingresar solo mayúsculas</div>
       </div>
+      <div *ngIf="inputForm.errors?.['sameValue']">Los valores no deben ser iguales</div>
     </div>
     <button class="form__button" (click)="submitForm()">Search</button>
   </form>

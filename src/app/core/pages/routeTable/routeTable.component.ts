@@ -1,7 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { Flight } from '../../models/flight.module';
 import {ApiService} from '../../services/api.service'
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-routeTable',
@@ -12,7 +12,7 @@ export class RouteTableComponent {
   public flightList: Flight[]=[];
   public availableFlights: Flight[]=[];
 
-  constructor(private api:ApiService, private activatedRoute: ActivatedRoute){}
+  constructor(private api:ApiService, private activatedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -28,7 +28,11 @@ export class RouteTableComponent {
       this.flightList = vuelos
       this.availableFlights = this.flightList.filter(journey => journey.departureStation.toLowerCase().includes(flight.departureStation.toLowerCase())&&
                                         journey.arrivalStation.toLowerCase().includes(flight.arrivalStation.toLowerCase()))
-      console.log(this.availableFlights);
+
+      if(this.availableFlights.length === 0){
+        alert('The route is not available')
+        this.router.navigate(['form']);
+      }
     });
   }
 }

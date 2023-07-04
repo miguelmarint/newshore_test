@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Flight } from '../../models/flight.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -9,5 +10,9 @@ import { Flight } from '../../models/flight.module';
 export class CardComponent {
   @Input('availableFlights') availableFlights: Flight[]=[];
 
-  constructor(){}
+  constructor(private router:Router){}
+
+  back(){
+    this.router.navigate(['form']);
+  }
 }
